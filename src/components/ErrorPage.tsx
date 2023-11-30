@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouteError } from 'react-router';
+import { useRouteError } from 'react-router-dom';
 export const ErrorPage: React.FC = () =>{
     const error:any = useRouteError();
     console.log(error);
