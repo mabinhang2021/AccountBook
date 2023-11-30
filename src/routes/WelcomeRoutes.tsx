@@ -1,5 +1,5 @@
 
-import React from "react";
+import React from "react-router-dom";
 import { WelcomeLayout } from "../layouts/WelcomeLayout";
 import { Welcome1 } from "../pages/Welcome1";
 import { Welcome2 } from "../pages/Welcome2";
