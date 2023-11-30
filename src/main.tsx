@@ -3,10 +3,6 @@ import ReactDOM from 'react-dom/client'
 
 import './index.css'
 import {
-  createBrowserRouter,
-  NavLink,
-  Outlet,
-  Router,
   RouterProvider,
 } from "react-router-dom";
 
