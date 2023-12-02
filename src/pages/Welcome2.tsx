@@ -1,26 +1,16 @@
 import React from "react";
 
+import p2 from '../assets/images/方便快捷.svg'
 
-import styled from 'styled-components'
-const Box = styled.div`
-  border: 1px solid red;
-  height: 100px;
-  &:hover{
-    background: red;
-  }
-`
-const BlueBox = styled(Box)`
-  border-color: blue;
-`
+
 export const Welcome2: React.FC =()=>{
-    return (
-        <div>
-        <Box>
-          hi
-        </Box>
-        <BlueBox>
-          hi
-        </BlueBox>
-      </div>
-    )
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+  <img src={p2} alt="Welcome2" />
+  <h2>
+  记录得当 <br/>
+  轻松掌控财务的节奏
+  </h2>
+</div>
+)
  }

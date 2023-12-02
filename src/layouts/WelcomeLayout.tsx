@@ -26,8 +26,9 @@ const StyledWelcomeLayout = styled.div`
     padding: 10px;
     align-items: center; 
   }
-  h1 {
-    align-items: center;  /* Adjust the font size as needed */
+  img {
+    
+    padding-top:20px; /* Adjust the font size as needed */
   }
 
   main {
@@ -70,14 +71,14 @@ export const WelcomeLayout: React.FC = () => {
     enter: { transform: 'translateX(0%)' },
     // 退出状态
     leave: { transform: 'translateX(-100%)' },
-    config: { duration: 1000 }
+    config: { duration: 300 }
   })
   return (
     <><GlobalStyles />
       <StyledWelcomeLayout>
       <header>
         <img src={logo}></img>
-        <h1>随手记</h1>
+        
       </header>
       <main>
         {transitions((style, pathname) => <animated.div key={pathname} style={style}>

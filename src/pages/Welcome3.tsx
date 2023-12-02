@@ -1,7 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+
+import p3 from '../assets/images/数据可视化.svg'
+
 export const Welcome3: React.FC =()=>{
-    return (
-        <div>3333 <NavLink to="/welcome/4">下一页</NavLink></div>
-    )
-}
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+  <img src={p3} alt="Welcome2" />
+  <h2>
+    数据可视 <br/>
+    一图看尽财务全貌
+  </h2>
+</div>
+)
+ }

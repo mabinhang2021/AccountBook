@@ -1,7 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import p4 from '../assets/images/云数据,分类.svg'
+
 export const Welcome4: React.FC =()=>{
-    return (
-        <div>4444 <NavLink to="/xxx">开始记账</NavLink></div>
-    )
-}
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+  <img src={p4} alt="Welcome2" />
+  <h2>
+    云端记录 <br/>
+    体验财务节奏智能化
+  </h2>
+</div>
+)
+ }
