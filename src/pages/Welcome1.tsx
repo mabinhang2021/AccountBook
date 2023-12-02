@@ -1,7 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import p1 from '../assets/images/welcome1.svg'
 export const Welcome1: React.FC =()=>{
     return (
-        <div>1111 <NavLink to="/welcome/2">下一页</NavLink></div>
+        <div>
+
+        <img src={p1} />
+        <h2>
+            明白花钱 <br/>
+            纵情享受你的爱好
+        </h2>
+
+        </div>
     )
 }
