@@ -90,7 +90,9 @@ export const WelcomeLayout: React.FC = () => {
     }
   },[direction,location.pathname,linkMap])
 
-
+  const onSkip = () =>{
+    localStorage.setItem('hasReadWelcomes','yes')
+  }
 
   return (
     <><GlobalStyles />
@@ -107,7 +109,7 @@ export const WelcomeLayout: React.FC = () => {
       </main>
       <footer>
         <Link to={linkMap[location.pathname]}>下一页</Link>
-        <Link to="/welcome/xxx">跳过</Link>
+        <Link to="/home" onClick={onSkip}>跳过</Link>
       </footer>
     </StyledWelcomeLayout></>
   )

@@ -13,6 +13,10 @@ export const router = createBrowserRouter([
         WelcomeRoutes
       ]
     },
+    {
+      path: "/home",
+      element:<div>home</div>,
+    }
     
   
   ]);
