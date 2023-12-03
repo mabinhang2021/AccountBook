@@ -1,11 +1,12 @@
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
-import { AnimationConfig, animated, useTransition } from '@react-spring/web'
+import { animated, useTransition } from '@react-spring/web'
 import type { ReactNode } from 'react'
 import { Link, useLocation, useNavigate, useOutlet } from 'react-router-dom'
 import {useEffect, useRef, useState} from 'react'
 import logo from '../assets/images/logo.png'
 import { useSwipe } from '../hooks/useSwipe';
+import { useLocalStore } from '../stores/useLocalStore';
 interface LinkMap {
   [key: string]: string;
 }
@@ -13,7 +14,7 @@ const linkMap: LinkMap = {
   '/welcome/1': '/welcome/2',
   '/welcome/2': '/welcome/3',
   '/welcome/3': '/welcome/4',
-  '/welcome/4': '/welcome/xxx',
+  '/welcome/4': '/home',
 }
 const StyledWelcomeLayout = styled.div`
   display: grid;
@@ -89,9 +90,9 @@ export const WelcomeLayout: React.FC = () => {
       nav(linkMap[location.pathname])
     }
   },[direction,location.pathname,linkMap])
-
+  const { setHasReadWelcomes } = useLocalStore()
   const onSkip = () =>{
-    localStorage.setItem('hasReadWelcomes','yes')
+    setHasReadWelcomes(true)
   }
 
   return (
