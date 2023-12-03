@@ -1,10 +1,11 @@
 import GlobalStyles from '../GlobalStyles';
 import styled from 'styled-components';
-import { animated, useTransition } from '@react-spring/web'
+import { AnimationConfig, animated, useTransition } from '@react-spring/web'
 import type { ReactNode } from 'react'
-import { Link, useLocation, useOutlet } from 'react-router-dom'
-import {useRef} from 'react'
+import { Link, useLocation, useNavigate, useOutlet } from 'react-router-dom'
+import {useEffect, useRef, useState} from 'react'
 import logo from '../assets/images/logo.png'
+import { useSwipe } from '../hooks/useSwipe';
 interface LinkMap {
   [key: string]: string;
 }
@@ -58,21 +59,39 @@ const StyledWelcomeLayout = styled.div`
 
 
 export const WelcomeLayout: React.FC = () => {
+  const animating = useRef(false)
   const map = useRef<Record<string, ReactNode>>({}) 
-  const location = useLocation() // 获取当前地址栏的信息
-  // location.pathname === /welcome/1
-  // location.pathname === /welcome/2
+  const location = useLocation() 
   const outlet = useOutlet()
   map.current[location.pathname] = outlet
+  const [extraStyle, setExtraStyle] = useState<{ position: 'relative' | 'absolute' }>({ position: 'relative' })
   const transitions = useTransition(location.pathname, {
-    // 进入状态
     from: { transform: location.pathname === '/welcome/1' ? 'translateX(0%)' : 'translateX(100%)' },
-    // 稳定状态
     enter: { transform: 'translateX(0%)' },
-    // 退出状态
     leave: { transform: 'translateX(-100%)' },
-    config: { duration: 300 }
+    config: { duration: 300 },
+    onStart: () => {
+      setExtraStyle({ position: 'absolute' })
+    },
+    onRest: () => {
+      animating.current = false
+      setExtraStyle({ position: 'relative' })
+    }
   })
+
+  const main = useRef<HTMLElement>(null)
+  const {direction} = useSwipe(main)
+  const nav = useNavigate()
+  useEffect( ()=>{
+    if(direction === 'left'){
+      if(animating.current){return}
+      animating.current = true;
+      nav(linkMap[location.pathname])
+    }
+  },[direction,location.pathname,linkMap])
+
+
+
   return (
     <><GlobalStyles />
       <StyledWelcomeLayout>
@@ -80,7 +99,7 @@ export const WelcomeLayout: React.FC = () => {
         <img src={logo}></img>
         
       </header>
-      <main>
+      <main ref={main}>
         {transitions((style, pathname) => <animated.div key={pathname} style={style}>
           {map.current[pathname]}
         </animated.div>
